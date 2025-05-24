@@ -20,7 +20,7 @@ const SearchBar = () => {
     return showSearch && visible ? (
         <div style={{borderTop: "1px solid", borderBottom: "1px solid", backgroundColor: "#F9FAFB", textAlign: "center"}}>
             <div className="searchbar-page">
-                <input value={search} onChange={(e)=>setSearch(e.target.value)} style={{flex: "1", outline: "none", backgroundColor: "inherit", fontSize: "0.875rem"}} type="text" placeholder="Search" />
+                <input value={search} onChange={(e)=>setSearch(e.target.value)} style={{flex: "1", outline: "none", backgroundColor: "inherit", fontSize: "0.875rem"}} type="text" placeholder="Tìm kiếm" />
                 <img style={{width: "1rem"}} src={assets.search_icon} alt={""}/>
             </div>
             <img onClick={()=> setShowSearch(false)} style={{display: "inline", width: "0.75rem", cursor: "pointer"}} src={assets.cross_icon} alt={""}/>

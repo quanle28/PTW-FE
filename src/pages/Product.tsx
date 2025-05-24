@@ -58,7 +58,7 @@ export const Product: React.FC = () => {
                     <p style={{marginTop: "1.25rem", fontSize: "1.875rem", fontWeight: "500"}}>{currency}{productData.price}</p>
                     <p className="product-page-infor-p">{productData.description}</p>
                     <div style={{display: "flex", flexDirection: "column", gap: "1rem", marginTop: "2rem", marginBottom: "2rem"}}>
-                        <p>Select Size</p>
+                        <p>Chọn bộ nhớ</p>
                         <div style={{display: "flex", gap: "0.5rem"}}>
                             {
                                 productData.sizes.map((item,index)=>(
@@ -67,12 +67,12 @@ export const Product: React.FC = () => {
                             }
                         </div>
                     </div>
-                    <button onClick={()=> addToCart(productData._id,size)} className="product-page-infor-button2">ADD TO CART</button>
+                    <button onClick={()=> addToCart(productData._id,size)} className="product-page-infor-button2">Thêm vào giỏ hàng</button>
                     <hr className="product-page-infor-hr"/>
                     <div style={{fontSize: "0.875rem", color: "#6b7280", marginTop: "1.25rem", display: "flex", flexDirection: "column", gap: "0.25rem"}}>
-                        <p>100% Original product.</p>
-                        <p>Cash on delivery is available on this product.</p>
-                        <p>Easy return and exchange policy within 7 days.</p>
+                        <p>Sản Phẩm Chính Hãng 100%.</p>
+                        <p>Sản phẩm này có hỗ trợ thanh toán khi nhận hàng (COD).</p>
+                        <p>Đổi trả dễ dàng trong 7 ngày.</p>
                     </div>
                 </div>
             </div>
@@ -80,12 +80,12 @@ export const Product: React.FC = () => {
             {/*Description & Review Section*/}
             <div style={{marginTop: "5rem"}}>
                 <div style={{display: "flex"}}>
-                    <p style={{border: "1px solid", paddingTop: "0.75rem", paddingBottom: "0.75rem", paddingLeft: "1.25rem", paddingRight: "1.25rem", fontSize: "0.875rem"}}>Description</p>
-                    <p style={{border: "1px solid", paddingTop: "0.75rem", paddingBottom: "0.75rem", paddingLeft: "1.25rem", paddingRight: "1.25rem", fontSize: "0.875rem"}}>Reviews (122)</p>
+                    <p style={{border: "1px solid", paddingTop: "0.75rem", paddingBottom: "0.75rem", paddingLeft: "1.25rem", paddingRight: "1.25rem", fontSize: "0.875rem"}}>Mô tả</p>
+                    <p style={{border: "1px solid", paddingTop: "0.75rem", paddingBottom: "0.75rem", paddingLeft: "1.25rem", paddingRight: "1.25rem", fontSize: "0.875rem"}}>Đánh giá (122)</p>
                 </div>
                 <div style={{display: "flex", flexDirection: "column", gap: "1rem", border: "1px solid", padding: "1.5rem 1.5rem", fontSize: "0.875rem", color: "#6b7280"}}>
-                    <p>An e-commerce website is an online platform that facilitates the buying and selling of products or services over the internet. It serves as a virtual marketplace where businesses and individuals can showcase their products, interact with customers, and conduct transactions without the need for a physical presence. E-commerce websites have gained immense popularity due to their convenience, accessibility, and the global reach they offer.</p>
-                    <p>E-commerce websites typically display products or services along with detailed descriptions, images, prices, and any available variations (e.g., sizes, colors). Each product usually has its own dedicated page with relevant information.</p>
+                    <p>Website thương mại điện tử TechView là một nền tảng trực tuyến hỗ trợ việc mua và bán các sản phẩm camera, laptop và thiết bị công nghệ qua internet. TechView đóng vai trò như một showroom công nghệ ảo, nơi chúng tôi giới thiệu các sản phẩm chọn lọc, tương tác với quý khách hàng và thực hiện giao dịch một cách tiện lợi mà không cần đến cửa hàng thực tế. Các website thương mại điện tử như TechView đã trở nên vô cùng phổ biến nhờ sự thuận tiện, khả năng truy cập dễ dàng và phạm vi tiếp cận rộng rãi mà chúng mang lại.</p>
+                    <p>TechView thường xuyên trưng bày các sản phẩm camera, laptop cùng với mô tả chi tiết, hình ảnh chất lượng cao, thông tin giá cả và các tùy chọn cấu hình sẵn có (ví dụ: dung lượng RAM, ổ cứng, màu sắc). Mỗi sản phẩm tại TechView thường có một trang riêng biệt với đầy đủ thông tin liên quan, giúp quý khách dễ dàng tìm hiểu và đưa ra quyết định mua sắm.</p>
                 </div>
             </div>
 

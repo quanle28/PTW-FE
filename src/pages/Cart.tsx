@@ -28,7 +28,7 @@ export const Cart: React.FC = () => {
     return (
         <div style={{borderTop: "1px solid", paddingTop: "3.5rem"}}>
             <div style={{fontSize: "1.5rem", marginBottom: "0.75rem"}}>
-                <Title text1={'YOUR'} text2={'CART'}/>
+                <Title text1={'GIỎ HÀNG'} text2={'CỦA BẠN'}/>
             </div>
 
             <div>
@@ -61,7 +61,7 @@ export const Cart: React.FC = () => {
                 <div className="cart-page-cart-total">
                     <CartTotal />
                     <div style={{width: "100%", textAlign: "end"}}>
-                        <button onClick={()=> navigate('/place-order')} style={{backgroundColor: "black", color: "white", fontSize: "0.875rem", marginTop: "2rem", marginBottom: "2rem", paddingLeft: "2rem", paddingRight: "2rem", paddingTop: "0.75rem", paddingBottom: "0.75rem"}}>PROCEED TO CHECKOUT</button>
+                        <button onClick={()=> navigate('/place-order')} style={{backgroundColor: "black", color: "white", fontSize: "0.875rem", marginTop: "2rem", marginBottom: "2rem", paddingLeft: "2rem", paddingRight: "2rem", paddingTop: "0.75rem", paddingBottom: "0.75rem"}}>TIẾN HÀNG THANH TOÁN</button>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import * as React from "react";
 import {assets} from "../assets/frontend_assets/assets.ts";
+import Herooo from '../assets/frontend_assets/herothaythe.png'
 
 export const Hero: React.FC = () => {
     return (
@@ -9,9 +10,9 @@ export const Hero: React.FC = () => {
                 <div style={{color: "#414141"}}>
                     <div style={{display: "flex", alignItems: "center", gap: "0.5rem"}}>
                         <p className="hero-side-left-p1"></p>
-                        <p className="hero-side-left-p2">OUR BESTSELLERS</p>
+                        <p className="hero-side-left-p2">BE THE FIRST</p>
                     </div>
-                    <h1 className="prata-regular hero-side-left-h1">Latest Arrivals</h1>
+                    <h1 className="prata-regular hero-side-left-h1">New Tech</h1>
                     <div style={{display: "flex", alignItems: "center", gap: "0.5rem"}}>
                         <p className="hero-side-left-p3">SHOP NOW</p>
                         <p className="hero-side-left-p1"></p>
@@ -20,7 +21,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/*Hero right side*/}
-            <img className="hero-side-right" src={assets.hero_img} alt={""}/>
+            <img className="hero-side-right" src={Herooo} alt={""}/>
         </div>
     );
 };

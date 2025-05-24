@@ -19,9 +19,9 @@ const LatestCollection:React.FC = () => {
     return (
         <div className="my-10">
             <div className="text-center py-8 text-3xl">
-                <Title text1={'LATEST'} text2={'COLLECTIONS'} />
+                <Title text1={'SẢN PHẨM'} text2={'MỚI NHẤT'} />
                 <p className="latestcollection-page">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.
+                    TechView là điểm đến của bạn với vô vàn lựa chọn thiết bị công nghệ. TechView từ lâu đã là nơi để bạn tìm thấy mọi thứ
                 </p>
             </div>
 

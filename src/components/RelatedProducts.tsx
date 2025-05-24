@@ -19,7 +19,7 @@ const RelatedProducts = ({category, subCategory}) => {
     return (
         <div style={{marginTop: "6rem", marginBottom: "6rem"}}>
             <div style={{textAlign: "center", fontSize: "1.875rem", paddingTop: "0.5rem", paddingBottom: "0.5rem"}}>
-                <Title text1={'RELATED'} text2={'PRODUCTS'}/>
+                <Title text1={'SẢN PHẨM'} text2={'LIÊN QUAN'}/>
             </div>
 
             <div className="product-grid">

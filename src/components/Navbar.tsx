@@ -6,6 +6,7 @@ import {Nav} from "react-bootstrap";
 import {Link, NavLink} from "react-router-dom";
 import {useContext, useState} from "react";
 import {ShopContext} from "../context/ShopContext.tsx";
+import LOOOGO from '../assets/frontend_assets/logothaythe.png'
 
 export const Navbar: React.FC = () => {
     const [visible, setVisible] = useState(false);
@@ -15,23 +16,23 @@ export const Navbar: React.FC = () => {
 
     return (
         <div className="nav-container">
-            <Link to="/" ><img src={assetsAdmin.logo} alt={"Logo"} className="img-logo-nav"/></Link>
+            <Link to="/" ><img src={LOOOGO} alt={"Logo"} className="img-logo-nav"/></Link>
 
             <ul className="nav-item">
                 <Nav.Link as={Link} to='/' className="nav-links">
-                    <p>HOME</p>
+                    <p>TRANG CHỦ</p>
                     <hr className="nav-hr"/>
                 </Nav.Link>
                 <Nav.Link as={Link} to='/collection' className="nav-links">
-                    <p>COLLECTION</p>
+                    <p>SẢN PHẨM</p>
                     <hr className="nav-hr"/>
                 </Nav.Link>
                 <Nav.Link as={Link} to='/about' className="nav-links">
-                    <p>ABOUT</p>
+                    <p>GIỚI THIỆU</p>
                     <hr className="nav-hr"/>
                 </Nav.Link>
                 <Nav.Link as={Link} to='/contact' className="nav-links">
-                    <p>CONTACT</p>
+                    <p>LIÊN HỆ</p>
                     <hr className="nav-hr"/>
                 </Nav.Link>
             </ul>
@@ -45,9 +46,9 @@ export const Navbar: React.FC = () => {
                     </Link>
                     <div className="dropdown-menu-nav">
                         <div className="menu-content">
-                            <p className="menu-item">My Profile</p>
-                            <p className="menu-item">Orders</p>
-                            <p className="menu-item">Logout</p>
+                            <p className="menu-item">Hồ sơ của tôi</p>
+                            <p className="menu-item">Đơn đặt hàng</p>
+                            <p className="menu-item">Đăng xuất</p>
                         </div>
                     </div>
                 </div>
@@ -69,16 +70,16 @@ export const Navbar: React.FC = () => {
                 </div>
 
                 <NavLink className="sidebar-nav-drop" onClick={() => setVisible(false)} to='/'>
-                    <p>HOME</p>
+                    <p>TRANG CHỦ</p>
                 </NavLink>
                 <NavLink className="sidebar-nav-drop" onClick={() => setVisible(false)} to='/collection'>
-                    <p>COLLECTION</p>
+                    <p>SẢN PHẨM</p>
                 </NavLink>
                 <NavLink className="sidebar-nav-drop" onClick={() => setVisible(false)} to='/about'>
-                    <p>ABOUT</p>
+                    <p>GIỚI THIỆU</p>
                 </NavLink>
                 <NavLink className="sidebar-nav-drop" onClick={() => setVisible(false)} to='/contact'>
-                    <p>CONTACT</p>
+                    <p>LIÊN HỆ</p>
                 </NavLink>
             </div>
         </div>

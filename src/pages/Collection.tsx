@@ -79,36 +79,48 @@ export const Collection: React.FC = () => {
         <div className="collection-page">
             {/*Filter Options*/}
             <div style={{minWidth: "200px"}}>
-                <p onClick={()=> setShowFilter(!showFilter)} style={{marginTop: "0.5rem", marginBottom: "0.5rem", fontSize: "1.25rem", display: "flex", alignItems: "center", cursor: "pointer", gap: "0.5rem"}}>FILTERS
+                <p onClick={()=> setShowFilter(!showFilter)} style={{marginTop: "0.5rem", marginBottom: "0.5rem", fontSize: "1.25rem", display: "flex", alignItems: "center", cursor: "pointer", gap: "0.5rem"}}>LỌC
                     <img className={`img-category-filter ${showFilter ? 'rotate-90':''}`} src={assets.dropdown_icon} alt={""}/>
                 </p>
                 {/*Category Filter*/}
                 <div className={`category-filter ${showFilter ? '' : 'hidden'}`}>
-                    <p style={{marginBottom: "0.75rem", fontSize: "0.875rem", fontWeight: "500"}}>CATEGORIES</p>
+                    <p style={{marginBottom: "0.75rem", fontSize: "0.875rem", fontWeight: "500"}}>DANH MỤC</p>
                     <div style={{display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.875rem", fontWeight: "300", color: "#4A5568"}}>
                         <p style={{display:"flex", gap: "0.5rem"}}>
-                            <input style={{width: "0.75rem"}} type="checkbox" value={'Men'} onChange={toggleCategory}/>Men
+                            <input style={{width: "0.75rem"}} type="checkbox" value={'Laptop'} onChange={toggleCategory}/>LAPTOP
                         </p>
                         <p style={{display:"flex", gap: "0.5rem"}}>
-                            <input style={{width: "0.75rem"}} type="checkbox" value={'Women'} onChange={toggleCategory}/>Women
-                        </p>
-                        <p style={{display:"flex", gap: "0.5rem"}}>
-                            <input style={{width: "0.75rem"}} type="checkbox" value={'Kids'} onChange={toggleCategory}/>Kids
+                            <input style={{width: "0.75rem"}} type="checkbox" value={'Camera'} onChange={toggleCategory}/>CAMERA
                         </p>
                     </div>
                 </div>
                 {/*SubCategory Filter*/}
                 <div className={`SubCategory-filter ${showFilter ? '' : 'hidden'}`}>
-                    <p style={{marginBottom: "0.75rem", fontSize: "0.875rem", fontWeight: "500"}}>TYPE</p>
+                    <p style={{marginBottom: "0.75rem", fontSize: "0.875rem", fontWeight: "500"}}>LAPTOP</p>
                     <div style={{display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.875rem", fontWeight: "300", color: "#4A5568"}}>
                         <p style={{display:"flex", gap: "0.5rem"}}>
-                            <input style={{width: "0.75rem"}} type="checkbox" value={'Topwear'} onChange={toggleSubCategory}/>Topwear
+                            <input style={{width: "0.75rem"}} type="checkbox" value={'ASUS'} onChange={toggleSubCategory}/>ASUS
                         </p>
                         <p style={{display:"flex", gap: "0.5rem"}}>
-                            <input style={{width: "0.75rem"}} type="checkbox" value={'Bottomwear'} onChange={toggleSubCategory}/>Bottomwear
+                            <input style={{width: "0.75rem"}} type="checkbox" value={'DELL'} onChange={toggleSubCategory}/>DELL
                         </p>
                         <p style={{display:"flex", gap: "0.5rem"}}>
-                            <input style={{width: "0.75rem"}} type="checkbox" value={'Winterwear'} onChange={toggleSubCategory}/>Winterwear
+                            <input style={{width: "0.75rem"}} type="checkbox" value={'MSI'} onChange={toggleSubCategory}/>MSI
+                        </p>
+                    </div>
+                </div>
+
+                <div className={`SubCategory-filter ${showFilter ? '' : 'hidden'}`}>
+                    <p style={{marginBottom: "0.75rem", fontSize: "0.875rem", fontWeight: "500"}}>CAMERA</p>
+                    <div style={{display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.875rem", fontWeight: "300", color: "#4A5568"}}>
+                        <p style={{display:"flex", gap: "0.5rem"}}>
+                            <input style={{width: "0.75rem"}} type="checkbox" value={'Canon'} onChange={toggleSubCategory}/>CANON
+                        </p>
+                        <p style={{display:"flex", gap: "0.5rem"}}>
+                            <input style={{width: "0.75rem"}} type="checkbox" value={'Sony'} onChange={toggleSubCategory}/>SONY
+                        </p>
+                        <p style={{display:"flex", gap: "0.5rem"}}>
+                            <input style={{width: "0.75rem"}} type="checkbox" value={'Fujifilm'} onChange={toggleSubCategory}/>FUJIFILM
                         </p>
                     </div>
                 </div>
@@ -117,12 +129,12 @@ export const Collection: React.FC = () => {
             {/*Right Side*/}
             <div style={{flex: "1", display: "flex", flexDirection: "column"}}>
                 <div className="collection-rigt-side">
-                    <Title text1={'ALL'} text2={'COLLECTIONS'}/>
+                    <Title text1={'TẤT CẢ'} text2={'SẢN PHẨM'}/>
                     {/*Product Sort*/}
                     <select onChange={(e)=> setSortType(e.target.value)} className="collection-product-sort">
-                        <option value="relavent">Sort by: Relavent</option>
-                        <option value="low-high">Sort by: Low to High</option>
-                        <option value="high-low">Sort by: High to Low</option>
+                        <option value="relavent">Sắp xếp: Không</option>
+                        <option value="low-high">Sắp xếp: Thấp -> Cao</option>
+                        <option value="high-low">Sắp xếp: Cao -> Thấp</option>
                     </select>
                 </div>
                 {/*Map Products*/}

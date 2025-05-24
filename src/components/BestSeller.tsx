@@ -16,10 +16,9 @@ const BestSeller: React.FC = () => {
     return (
         <div style={{marginTop: "2.5rem", marginBottom: "2.5rem"}}>
             <div style={{textAlign: "center", fontSize: "1.875rem", paddingTop: "2rem", paddingBottom: "2rem"}}>
-                <Title text1={'BEST'} text2={'SELLERS'}/>
+                <Title text1={'BÁN CHẠY'} text2={'NHẤT'}/>
                 <p className="bestseller-page">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.
-                </p>
+                    TechView là nơi khám phá các sản phẩm công nghệ. TechView vẫn luôn là nơi để tìm kiếm của chúng ta.                </p>
             </div>
 
             <div className="product-grid">
