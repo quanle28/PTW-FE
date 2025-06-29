@@ -11,20 +11,21 @@ const BestSeller: React.FC = () => {
     useEffect(() => {
         const bestProduct = products.filter((item)=>(item.bestseller));
         setBestSeller(bestProduct.slice(0,5));
-    }, []);
+    }, [products]);
 
     return (
-        <div style={{marginTop: "2.5rem", marginBottom: "2.5rem"}}>
-            <div style={{textAlign: "center", fontSize: "1.875rem", paddingTop: "2rem", paddingBottom: "2rem"}}>
-                <Title text1={'BÁN CHẠY'} text2={'NHẤT'}/>
+        <div className="bestseller-section">
+            <div className="bestseller-header">
+                <Title text1="BÁN CHẠY" text2="NHẤT" />
                 <p className="bestseller-page">
-                    TechView là nơi khám phá các sản phẩm công nghệ. TechView vẫn luôn là nơi để tìm kiếm của chúng ta.                </p>
+                    TechView là nơi khám phá các sản phẩm công nghệ. TechView vẫn luôn là nơi để tìm kiếm của chúng ta.
+                </p>
             </div>
 
             <div className="product-grid">
                 {
                     bestSeller.map((item,index)=> (
-                        <ProductItem key={index} id={item._id} name={item.name} image={item.image} price={item.price}/>
+                        <ProductItem key={index} id={item.id} name={item.name} image={item.images} price={item.price}/>
                     ))
                 }
             </div>

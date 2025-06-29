@@ -2,8 +2,14 @@ import {useContext} from "react";
 import {ShopContext} from "../context/ShopContext.tsx";
 import Title from "./Title.tsx";
 
-const CartTotal = () => {
-    const {getCartAmount, currency, delivery_fee} = useContext(ShopContext);
+const CartTotal = ({ cartData }) => {
+    const {currency, delivery_fee} = useContext(ShopContext);
+
+    const getCartAmount = () => {
+        return cartData.reduce((total, item) => {
+            return total + Math.round(item.price) * item.number;
+        }, 0);
+    };
 
     return (
         <div style={{width: "100%"}}>
@@ -14,17 +20,17 @@ const CartTotal = () => {
             <div style={{display: "flex", flexDirection: "column", gap: "0.5rem", marginTop: "0.5rem", fontSize: "0.875rem"}}>
                 <div style={{display: "flex", justifyContent: "space-between"}}>
                     <p>Giá</p>
-                    <p>{currency} {getCartAmount()}.00</p>
+                    <p>{getCartAmount()} {currency}</p>
                 </div>
                 <hr />
                 <div style={{display: "flex", justifyContent: "space-between"}}>
                     <p>Phí vận chuyển</p>
-                    <p>{currency} {delivery_fee}.00</p>
+                    <p>{delivery_fee} {currency}</p>
                 </div>
                 <hr />
                 <div style={{display: "flex", justifyContent: "space-between"}}>
                     <p>Tổng cộng</p>
-                    <p>{currency} {getCartAmount() === 0 ? '0' : getCartAmount() + delivery_fee}.00</p>
+                    <p>{getCartAmount() === 0 ? '0' : getCartAmount() + delivery_fee} {currency}</p>
                 </div>
             </div>
         </div>

@@ -10,15 +10,11 @@ const LatestCollection:React.FC = () => {
 
     useEffect(() => {
         setLatestProducts(products.slice(0,10));
-    }, []);
-
-    console.log(products);
-
-    console.log(latestProducts)
+    }, [products]);
 
     return (
-        <div className="my-10">
-            <div className="text-center py-8 text-3xl">
+        <div className="latestcollection-page-first">
+            <div className="latestcollection-page-first-div">
                 <Title text1={'SẢN PHẨM'} text2={'MỚI NHẤT'} />
                 <p className="latestcollection-page">
                     TechView là điểm đến của bạn với vô vàn lựa chọn thiết bị công nghệ. TechView từ lâu đã là nơi để bạn tìm thấy mọi thứ
@@ -29,7 +25,7 @@ const LatestCollection:React.FC = () => {
             <div className="product-grid">
                 {
                     latestProducts.map((item,index)=>(
-                        <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price}/>
+                        <ProductItem key={index} id={item.id} image={item.images} name={item.name} price={item.price}/>
                     ))
                 }
             </div>

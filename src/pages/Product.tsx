@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {ShopContext} from "../context/ShopContext.tsx";
 import {assets} from "../assets/frontend_assets/assets.ts";
@@ -10,21 +10,22 @@ export const Product: React.FC = () => {
     const {products, currency, addToCart} = useContext(ShopContext);
     const [productData, setProductData] = useState(false);
     const [image, setImage] = useState('');
-    const [size, setSize] = useState('');
+    const [memory, setMemory] = useState('');
+    const location = useLocation();
 
     const fetchProductData = async () => {
-        products.map((item) => {
-            if(item._id === productId){
-                setProductData(item);
-                setImage(item.image[0]);
-                return null;
-            }
-        })
-    }
+        const foundProduct = products.find(p => p.id === Number(productId));
+        console.log("foundProduct", foundProduct)
+        if (foundProduct) {
+            setProductData(foundProduct);
+            setImage(foundProduct.images[0]);
+        }
+    };
+
 
     useEffect(() => {
         fetchProductData();
-    }, [productId]);
+    }, [productId, products]);
 
     return productData ? (
         <div style={{borderTop: "2px solid", paddingTop: "2.5rem", transition: "opacity 0.5s ease-in", opacity: "1"}}>
@@ -34,7 +35,7 @@ export const Product: React.FC = () => {
                 <div className="product-page-img">
                     <div className="product-page-img-div">
                         {
-                            productData.image.map((item, index)=>(
+                            productData.images.map((item, index)=>(
                                 <img onClick={() => setImage(item)} src={item} key={index} className="product-page-img-div-img" alt={""}/>
                             ))
                         }
@@ -55,19 +56,30 @@ export const Product: React.FC = () => {
                         <img src={assets.star_dull_icon} alt={""} className="product-page-infor-img"/>
                         <p style={{paddingLeft: "0.5rem", paddingTop: "1rem" }}>(122)</p>
                     </div>
-                    <p style={{marginTop: "1.25rem", fontSize: "1.875rem", fontWeight: "500"}}>{currency}{productData.price}</p>
-                    <p className="product-page-infor-p">{productData.description}</p>
+                    <p style={{marginTop: "1.25rem", fontSize: "1.875rem", fontWeight: "500"}}>{productData.price}{currency}</p>
+                    <p className="product-page-infor-p">{productData.describes}</p>
                     <div style={{display: "flex", flexDirection: "column", gap: "1rem", marginTop: "2rem", marginBottom: "2rem"}}>
                         <p>Chọn bộ nhớ</p>
                         <div style={{display: "flex", gap: "0.5rem"}}>
                             {
-                                productData.sizes.map((item,index)=>(
-                                    <button onClick={()=> setSize(item)} className={`product-page-infor-button ${item === size ? 'active': ''}`} key={index}>{item}</button>
+                                productData.memories.map((item,index)=>(
+                                    <button
+                                        onClick={() => setMemory(item)}
+                                        className={`product-page-infor-button ${item === memory ? 'active' : ''}`}
+                                        key={index}
+                                    >
+                                        {item === "1" ? "1 TB" : `${item} GB`}
+                                    </button>
                                 ))
                             }
                         </div>
                     </div>
-                    <button onClick={()=> addToCart(productData._id,size)} className="product-page-infor-button2">Thêm vào giỏ hàng</button>
+                    <button
+                        onClick={() => addToCart(productData.id, memory)}
+                        className="product-page-infor-button2"
+                    >
+                        Thêm vào giỏ hàng
+                    </button>
                     <hr className="product-page-infor-hr"/>
                     <div style={{fontSize: "0.875rem", color: "#6b7280", marginTop: "1.25rem", display: "flex", flexDirection: "column", gap: "0.25rem"}}>
                         <p>Sản Phẩm Chính Hãng 100%.</p>
@@ -90,7 +102,7 @@ export const Product: React.FC = () => {
             </div>
 
             {/*display related products*/}
-            <RelatedProducts category={productData.category} subCategory={productData.subCategory}/>
+            <RelatedProducts category={productData.categories} subCategory={productData.brands}/>
         </div>
     ) : <div className="opacity-0"></div>
 };

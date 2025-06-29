@@ -17,11 +17,11 @@ export const Orders: React.FC = () => {
                     products.slice(1,4).map((item,index)=>(
                         <div key={index} className="orders-page">
                             <div style={{display: "flex", alignItems: "flex-start", gap: "1.5rem", fontSize: "0.875rem", lineHeight: "1.25rem"}}>
-                                <img className="orders-page-img" src={item.image[0]} alt={""}/>
+                                <img className="orders-page-img" src={item.images[0]} alt={""}/>
                                 <div>
                                     <p className="orders-page-p">{item.name}</p>
                                     <div style={{display: "flex", alignItems: "center", gap: "0.75rem", marginTop: "0.5rem", fontSize: "1rem", lineHeight: "1.5rem", color: "#374151"}}>
-                                        <p style={{fontSize: "1.125rem", lineHeight: "1.75rem"}}>{currency}{item.price}</p>
+                                        <p style={{fontSize: "1.125rem", lineHeight: "1.75rem"}}>{item.price}{currency}</p>
                                         <p>Số lượng: 1</p>
                                         <p>Bộ nhớ: 128GB</p>
                                     </div>

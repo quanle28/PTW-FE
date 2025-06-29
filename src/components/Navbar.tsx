@@ -3,14 +3,18 @@ import {assetsAdmin} from "../assets/admin_assets/assets.ts";
 import {assets} from "../assets/frontend_assets/assets.ts";
 import '../App.scss'
 import {Nav} from "react-bootstrap";
-import {Link, NavLink} from "react-router-dom";
-import {useContext, useState} from "react";
+import {Link, NavLink, useLocation, useNavigate} from "react-router-dom";
+import {useContext, useState, useEffect} from "react";
 import {ShopContext} from "../context/ShopContext.tsx";
 import LOOOGO from '../assets/frontend_assets/logothaythe.png'
 
 export const Navbar: React.FC = () => {
     const [visible, setVisible] = useState(false);
-    const {setShowSearch, getCartCount} = useContext(ShopContext);
+    const {setShowSearch, userInfo, getCartCount, setUserInfo, setCartItems} = useContext(ShopContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const currentPath = location.pathname;
+    const token = localStorage.getItem("token");
 
     console.log(getCartCount)
 
@@ -44,13 +48,21 @@ export const Navbar: React.FC = () => {
                     <Link to="/login">
                         <img className="profile-icon" src={assets.profile_icon} alt=""/>
                     </Link>
-                    <div className="dropdown-menu-nav">
+                    {token && <div className="dropdown-menu-nav">
                         <div className="menu-content">
-                            <p className="menu-item">Hồ sơ của tôi</p>
-                            <p className="menu-item">Đơn đặt hàng</p>
-                            <p className="menu-item">Đăng xuất</p>
+                            <p className="menu-item">
+                                {userInfo ? `Xin chào, ${userInfo.username}` : "Hồ sơ của tôi"}
+                            </p>
+                            <p onClick={() => navigate("/orders")} className="menu-item">Đơn đặt hàng</p>
+                            <p className="menu-item" onClick={() => {
+                                setUserInfo(null);
+                                localStorage.removeItem("userInfo");
+                                localStorage.removeItem("token");
+                                setCartItems({});
+                                navigate("/login");
+                            }}>Đăng xuất</p>
                         </div>
-                    </div>
+                    </div>}
                 </div>
 
                 <Link to='/cart' className="nav-cart-icon">
