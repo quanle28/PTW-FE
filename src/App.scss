@@ -2751,6 +2751,105 @@ label[for="bestseller"] {
 
 
 
+// order-page
+.orders-container {
+  border-top: 1px solid #e5e7eb;
+  padding: 1rem;
+}
+
+.order-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #fff;
+}
+
+.order-header p,
+.order-total p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.order-header strong {
+  display: inline-block;
+  width: 180px;
+  color: #111827;
+}
+
+.order-items {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.order-items img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.product-info p {
+  margin: 0.25rem 0;
+}
+
+.order-total {
+  border-top: 1px dashed #ddd;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.order-total p {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.order-total .total {
+  color: #dc2626;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.order-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.order-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.order-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-ok {
+  background-color: #22c55e;
+}
+
+.status-pending {
+  background-color: #f59e0b;
+}
+
+.order-track-btn {
+  border: 1px solid #111827;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
 
 
 
