@@ -89,6 +89,7 @@ export const PlaceOrders: React.FC = () => {
         }
 
         const fullAddress = `${addressInfo.firstName} ${addressInfo.lastName}, ${addressInfo.street}, ${addressInfo.ward}, ${addressInfo.city}, ${addressInfo.country}, ${addressInfo.phone}`;
+        const totalAmount = cartData.reduce((total, item) => total + item.price * item.quantity, 0);
 
         if (method === "cod") {
             // Thanh toán khi nhận hàng (COD)
@@ -120,13 +121,14 @@ export const PlaceOrders: React.FC = () => {
                 },
                 body: JSON.stringify({
                     adress: fullAddress,
-                    paymentMethod: method
+                    paymentMethod: method,
+                    // totalAmount: 300000,
                 }),
             });
 
             if (response.ok) {
                 const data = await response.json();
-                window.location.href = data.url; // Redirect đến trang thanh toán VNPAY
+                window.location.href = data.url;
             } else {
                 toast.error("Không thể tạo thanh toán VNPAY.");
             }

@@ -1,44 +1,147 @@
-import * as React from "react";
-import {useContext} from "react";
-import {ShopContext} from "../context/ShopContext.tsx";
-import Title from "../components/Title.tsx";
+import React, { useEffect, useState } from "react";
+import Title from "../components/Title";
+
+type OrderItem = {
+    id: number;
+    name: string;
+    images: string;
+    price: number;
+    number: number;
+    capicity: string;
+    date: number;
+    status: string;
+    orderId: number;
+    shipFee: number;
+    paymentMethod: string;
+    address: string;
+};
+
+const formatCurrency = (amount: number) =>
+    amount.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+
+const formatDate = (timestamp: number) => {
+    const date = new Date(timestamp);
+    return date.toLocaleDateString("vi-VN");
+};
 
 export const Orders: React.FC = () => {
-    const {products, currency} = useContext(ShopContext);
+    const [ordersData, setOrdersData] = useState<OrderItem[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            const token = localStorage.getItem("token");
+
+            try {
+                const response = await fetch("http://localhost:8080/shopqtq/order", {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (!response.ok) throw new Error("Lỗi khi fetch đơn hàng");
+
+                const data = await response.json();
+                setOrdersData(data);
+            } catch (error) {
+                console.error("Lỗi khi tải đơn hàng:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchOrders();
+    }, []);
+
+    const groupedOrders = ordersData.reduce((acc: any, item: OrderItem) => {
+        const orderId = item.orderId || item.id;
+        if (!acc[orderId]) {
+            acc[orderId] = {
+                orderId,
+                date: item.date,
+                status: item.status,
+                shipFee: item.shipFee || 20000,
+                paymentMethod: item.paymentMethod || "cod",
+                address: item.address,
+                items: [],
+                total: 0,
+            };
+        }
+        acc[orderId].items.push(item);
+        acc[orderId].total += item.price * item.number;
+        return acc;
+    }, {});
+
+    const ordersArray = Object.values(groupedOrders);
 
     return (
-        <div style={{borderTop: "1px solid #e5e7eb"}}>
-            <div style={{fontSize: "1.5rem", lineHeight: "2rem"}}>
-                <Title text1={'ĐƠN HÀNG'} text2={'CỦA TÔI'}/>
-            </div>
-
-            <div>
-                {
-                    products.slice(1,4).map((item,index)=>(
-                        <div key={index} className="orders-page">
-                            <div style={{display: "flex", alignItems: "flex-start", gap: "1.5rem", fontSize: "0.875rem", lineHeight: "1.25rem"}}>
-                                <img className="orders-page-img" src={item.images[0]} alt={""}/>
-                                <div>
-                                    <p className="orders-page-p">{item.name}</p>
-                                    <div style={{display: "flex", alignItems: "center", gap: "0.75rem", marginTop: "0.5rem", fontSize: "1rem", lineHeight: "1.5rem", color: "#374151"}}>
-                                        <p style={{fontSize: "1.125rem", lineHeight: "1.75rem"}}>{item.price}{currency}</p>
-                                        <p>Số lượng: 1</p>
-                                        <p>Bộ nhớ: 128GB</p>
-                                    </div>
-                                    <p style={{marginTop: "0.5rem"}}>Ngày: <span style={{color: "#9ca3af"}}>23/05/2025</span></p>
-                                </div>
-                            </div>
-                            <div className="orders-page-div">
-                                <div style={{display: "flex", alignItems: "center", gap: "0.5rem"}}>
-                                    <p style={{minWidth: "0.5rem", height: "0.5rem", borderRadius: "9999px", backgroundColor: "#38a169"}}></p>
-                                    <p className="orders-page-p2">Sẵn sàng</p>
-                                </div>
-                                <button style={{border: "1px solid", paddingLeft: "1rem", paddingRight: "1rem", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontSize: "0.875rem", fontWeight: "500", borderRadius: "0.125rem"}}>Theo dõi đơn hàng</button>
-                            </div>
+        <div className="orders-container">
+            <Title text1="ĐƠN HÀNG" text2="CỦA TÔI" />
+            {loading ? (
+                <p>Đang tải đơn hàng...</p>
+            ) : ordersArray.length === 0 ? (
+                <p>Không có đơn hàng nào.</p>
+            ) : (
+                ordersArray.map((order: any) => (
+                    <div key={order.orderId} className="order-card">
+                        <div className="order-header">
+                            <p><strong>Mã đơn:</strong> {order.orderId}</p>
+                            <p><strong>Ngày đặt:</strong> {formatDate(order.date)}</p>
+                            <p><strong>Địa chỉ:</strong> {order.address}</p>
+                            <p><strong>Phương thức thanh toán:</strong> {order.paymentMethod.toUpperCase()}</p>
+                            <p>
+                                <strong>Trạng thái:</strong>{" "}
+                                {order.paymentMethod === "vnpay"
+                                    ? "Đã thanh toán"
+                                    : "Chưa thanh toán"}
+                            </p>
                         </div>
-                    ))
-                }
-            </div>
+
+                        {order.items.map((item: any, idx: number) => (
+                            <div key={idx} className="order-items">
+                                <img src={item.images} alt={item.name} />
+                                <div className="product-info">
+                                    <p><strong>{item.name}</strong></p>
+                                    <p>Giá: {formatCurrency(item.price)} x {item.number}</p>
+                                    <p>Bộ nhớ: {item.capicity}GB</p>
+                                </div>
+                            </div>
+                        ))}
+
+                        <div className="order-total">
+                            <p>
+                                <span>Tổng sản phẩm:</span>
+                                <span>{formatCurrency(order.total)}</span>
+                            </p>
+                            <p>
+                                <span>Phí giao hàng:</span>
+                                <span>{formatCurrency(order.shipFee)}</span>
+                            </p>
+                            <p className="total">
+                                <span>Tổng cộng:</span>
+                                <span>{formatCurrency(order.total + order.shipFee)}</span>
+                            </p>
+                        </div>
+
+                        <div className="order-status">
+                            <div className="order-status-indicator">
+                                <div
+                                    className={`order-status-dot ${
+                                        order.paymentMethod === "vnpay" ? "status-ok" : "status-pending"
+                                    }`}
+                                ></div>
+                                <p>
+                                    {order.paymentMethod === "vnpay"
+                                        ? "Đã thanh toán"
+                                        : "Thanh toán khi nhận hàng"}
+                                </p>
+                            </div>
+                            {/*<button className="order-track-btn">Theo dõi đơn hàng</button>*/}
+                        </div>
+                    </div>
+                ))
+            )}
         </div>
     );
 };

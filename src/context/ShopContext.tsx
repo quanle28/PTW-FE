@@ -129,7 +129,8 @@ const ShopContextProvider = (props) => {
             body: JSON.stringify({
                 productId: Number(productId),
                 memoriesId: Number(memoriesId),
-                number: 1
+                number: 1,
+                update: false
             })
         });
 
@@ -177,7 +178,8 @@ const ShopContextProvider = (props) => {
             body: JSON.stringify({
                 productId: Number(productId),
                 memoriesId: Number(memoriesId),
-                number: Number(quantity)
+                number: Number(quantity),
+                update: true
             })
         });
 

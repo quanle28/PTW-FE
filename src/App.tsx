@@ -64,7 +64,7 @@ function App() {
 
                 <Route path='/place-order' element={<PrivateRoute><PlaceOrders /></PrivateRoute>} />
                 <Route path='/orders' element={<PrivateRoute><Orders /></PrivateRoute>} />
-                <Route path="/vnpay_return" element={<VnpayReturn />} />
+                <Route path="/vnpay-return" element={<VnpayReturn />} />
 
                 {/* Admin route */}
                 <Route path='/admin' element={<AdminPage />} >
