@@ -23,6 +23,7 @@ import {OrdersAdmin} from "./components/OrdersAdmin.tsx";
 import {UpdateAdmin} from "./components/UpdateAdmin.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import VnpayReturn from "./pages/VnpayReturn.tsx";
+import {Revenue} from "./components/Revenue.tsx";
 
 function App() {
     const location = useLocation();
@@ -68,6 +69,7 @@ function App() {
 
                 {/* Admin route */}
                 <Route path='/admin' element={<AdminPage />} >
+                    <Route path='revenue' element={<Revenue />}/>
                     <Route path='add' element={<AddAdmin />}/>
                     <Route path='update/:productId' element={<UpdateAdmin />}/>
                     <Route path='list' element={<ListAdmin />}/>

@@ -8,80 +8,6 @@ export const SidebarAdminPage = () => {
     const isActive = (path) => location.pathname === path;
 
     return (
-        // <div style={{
-        //     width: "18%",
-        //     minHeight: "100vh",
-        //     borderRightWidth: "2px",
-        //     borderRightStyle: "solid",
-        //     borderRightColor: "#e5e7eb"
-        // }}>
-        //     <div style={{
-        //         display: "flex",
-        //         flexDirection: "column",
-        //         gap: "1rem",
-        //         paddingTop: "1.5rem",
-        //         paddingLeft: "20%",
-        //         fontSize: "15px"
-        //     }}
-        //     >
-        //         <Nav.Link style={{
-        //             display: "flex",
-        //             alignItems: "center",
-        //             gap: "0.75rem",
-        //             borderWidth: "1px",
-        //             borderStyle: "solid",
-        //             borderColor: "#d1d5db",
-        //             borderRightWidth: 0,
-        //             paddingLeft: "0.75rem",
-        //             paddingRight: "0.75rem",
-        //             paddingTop: "0.5rem",
-        //             paddingBottom: "0.5rem",
-        //             borderRadius: "0.25rem",
-        //         }} as={Link} to='/admin/add' >
-        //             <img style={{ width: "1.25rem", height: "1.25rem" }}
-        //                  src={assetsAdmin.add_icon} alt={""}/>
-        //             <p className="sidebar-admin-page-p">Add Items</p>
-        //         </Nav.Link>
-        //
-        //         <Nav.Link style={{
-        //             display: "flex",
-        //             alignItems: "center",
-        //             gap: "0.75rem",
-        //             borderWidth: "1px",
-        //             borderStyle: "solid",
-        //             borderColor: "#d1d5db",
-        //             borderRightWidth: 0,
-        //             paddingLeft: "0.75rem",
-        //             paddingRight: "0.75rem",
-        //             paddingTop: "0.5rem",
-        //             paddingBottom: "0.5rem",
-        //             borderRadius: "0.25rem",
-        //         }} as={Link} to='/admin/list' >
-        //             <img style={{ width: "1.25rem", height: "1.25rem" }}
-        //                  src={assetsAdmin.order_icon} alt={""}/>
-        //             <p className="sidebar-admin-page-p">List Items</p>
-        //         </Nav.Link>
-        //
-        //         <Nav.Link style={{
-        //             display: "flex",
-        //             alignItems: "center",
-        //             gap: "0.75rem",
-        //             borderWidth: "1px",
-        //             borderStyle: "solid",
-        //             borderColor: "#d1d5db",
-        //             borderRightWidth: 0,
-        //             paddingLeft: "0.75rem",
-        //             paddingRight: "0.75rem",
-        //             paddingTop: "0.5rem",
-        //             paddingBottom: "0.5rem",
-        //             borderRadius: "0.25rem",
-        //         }} as={Link} to='/admin/orders' >
-        //             <img style={{ width: "1.25rem", height: "1.25rem" }}
-        //                  src={assetsAdmin.order_icon} alt={""}/>
-        //             <p className="sidebar-admin-page-p">Orders</p>
-        //         </Nav.Link>
-        //     </div>
-        // </div>
 
         <div
             style={{
@@ -101,6 +27,20 @@ export const SidebarAdminPage = () => {
                     fontSize: "15px",
                 }}
             >
+                {/* Revenue Items */}
+                <Nav.Link
+                    as={Link}
+                    to="/admin/revenue"
+                    className={`sidebar-admin-link ${isActive("/admin/revenue") ? "active" : ""}`}
+                >
+                    <img
+                        src={assetsAdmin.revenue_icon}
+                        alt=""
+                        style={{ width: "1.8rem", height: "1.8rem" }}
+                    />
+                    <p className="sidebar-admin-page-p">Quản lý doanh thu</p>
+                </Nav.Link>
+
                 {/* Add Items */}
                 <Nav.Link
                     as={Link}
@@ -112,7 +52,7 @@ export const SidebarAdminPage = () => {
                         alt=""
                         style={{ width: "1.25rem", height: "1.25rem" }}
                     />
-                    <p className="sidebar-admin-page-p">Add Items</p>
+                    <p className="sidebar-admin-page-p">Thêm sản phẩm</p>
                 </Nav.Link>
 
                 {/* List Items */}
@@ -126,7 +66,7 @@ export const SidebarAdminPage = () => {
                         alt=""
                         style={{ width: "1.25rem", height: "1.25rem" }}
                     />
-                    <p className="sidebar-admin-page-p">List Items</p>
+                    <p className="sidebar-admin-page-p">Danh sách sản phẩm</p>
                 </Nav.Link>
 
                 {/* Orders */}
@@ -136,11 +76,11 @@ export const SidebarAdminPage = () => {
                     className={`sidebar-admin-link ${isActive("/admin/orders") ? "active" : ""}`}
                 >
                     <img
-                        src={assetsAdmin.order_icon}
+                        src={assetsAdmin.orders}
                         alt=""
                         style={{ width: "1.25rem", height: "1.25rem" }}
                     />
-                    <p className="sidebar-admin-page-p">Orders</p>
+                    <p className="sidebar-admin-page-p">Đơn hàng</p>
                 </Nav.Link>
             </div>
         </div>

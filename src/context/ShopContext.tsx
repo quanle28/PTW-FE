@@ -40,6 +40,7 @@ const ShopContextProvider = (props) => {
             try {
                 const res = await fetch('http://localhost:8080/shopqtq/allproducts');
                 const data = await res.json();
+                console.log("tokenHome", token)
                 setProduct(data);
             } catch (error) {
                 console.error("Không thể load product:", error);
@@ -84,30 +85,6 @@ const ShopContextProvider = (props) => {
             }
         }
     }, [location.pathname]);
-
-    // const addToCart = async (itemId, memories) => {
-    //     if (!memories) {
-    //         toast.error('Chọn bộ nhớ trước khi thêm vào giỏ hàng');
-    //         return;
-    //     }
-    //
-    //     let cartData = structuredClone(cartItems);
-    //
-    //     console.log("cartData", cartData)
-    //
-    //     if (cartData[itemId]) {
-    //         if (cartData[itemId][memories]) {
-    //             cartData[itemId][memories] += 1;
-    //         } else {
-    //             cartData[itemId][memories] = 1;
-    //         }
-    //     } else {
-    //         cartData[itemId] = {};
-    //         cartData[itemId][memories] = 1;
-    //     }
-    //
-    //     setCartItems(cartData);
-    // };
 
     const addToCart = async (productId, memoriesId) => {
         const token = localStorage.getItem("token");

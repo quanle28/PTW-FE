@@ -10,6 +10,7 @@ import {useContext, useEffect} from "react";
 import {ShopContext} from "../context/ShopContext.tsx";
 import {toast} from "react-toastify";
 import {UpdateAdmin} from "../components/UpdateAdmin.tsx";
+import {Revenue} from "../components/Revenue.tsx";
 
 export const AdminPage = () => {
     const token = localStorage.getItem("token");
@@ -32,30 +33,6 @@ export const AdminPage = () => {
     }, [token, navigate]);
 
     return (
-        // <div className="admin-page">
-        //     <NavbarAdmin />
-        //     <hr />
-        //     <div style={{ display: "flex", width: "100%" }}>
-        //         <SidebarAdminPage />
-        //         <div style={{
-        //             width: "70%",
-        //             marginLeft: "max(5vw, 25px)",
-        //             marginRight: "auto",
-        //             marginTop: "2rem",
-        //             marginBottom: "2rem",
-        //             color: "#4b5563",
-        //             fontSize: "1rem"
-        //         }}>
-        //             <Routes>
-        //                 <Route path='/add' element={<AddAdmin />} />
-        //                 <Route path='/update/:productId' element={<UpdateAdmin />} />
-        //                 <Route path='/list' element={<ListAdmin />} />
-        //                 <Route path='/orders' element={<OrdersAdmin />} />
-        //             </Routes>
-        //         </div>
-        //     </div>
-        // </div>
-
         <div className="admin-page">
             <NavbarAdmin />
             <hr style={{ margin: 0 }} />
@@ -78,6 +55,7 @@ export const AdminPage = () => {
                     }}
                 >
                     <Routes>
+                        <Route path="/revenue" element={<Revenue />} />
                         <Route path="/add" element={<AddAdmin />} />
                         <Route path="/update/:productId" element={<UpdateAdmin />} />
                         <Route path="/list" element={<ListAdmin />} />
