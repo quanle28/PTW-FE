@@ -21,7 +21,7 @@ const formatCurrency = (amount: number) =>
 
 const formatDate = (timestamp: number) => {
     const date = new Date(timestamp);
-    return date.toLocaleDateString("vi-VN");
+    return date.toLocaleDateString("vi-VN"); // ví dụ: 4/7/2025
 };
 
 export const Orders: React.FC = () => {
@@ -54,6 +54,7 @@ export const Orders: React.FC = () => {
         fetchOrders();
     }, []);
 
+    // Gom nhóm các item theo orderId
     const groupedOrders = ordersData.reduce((acc: any, item: OrderItem) => {
         const orderId = item.orderId || item.id;
         if (!acc[orderId]) {
@@ -78,6 +79,7 @@ export const Orders: React.FC = () => {
     return (
         <div className="orders-container">
             <Title text1="ĐƠN HÀNG" text2="CỦA TÔI" />
+
             {loading ? (
                 <p>Đang tải đơn hàng...</p>
             ) : ordersArray.length === 0 ? (
@@ -90,54 +92,50 @@ export const Orders: React.FC = () => {
                             <p><strong>Ngày đặt:</strong> {formatDate(order.date)}</p>
                             <p><strong>Địa chỉ:</strong> {order.address}</p>
                             <p><strong>Phương thức thanh toán:</strong> {order.paymentMethod.toUpperCase()}</p>
-                            <p>
-                                <strong>Trạng thái:</strong>{" "}
-                                {order.paymentMethod === "vnpay"
-                                    ? "Đã thanh toán"
-                                    : "Chưa thanh toán"}
-                            </p>
+                            <p><strong>Trạng thái:</strong> {
+                                order.status === "APPROVE" ? "Đã phê duyệt" :
+                                    order.paymentMethod === "vnpay" ? "Đã thanh toán" :
+                                        "Chưa thanh toán"
+                            }</p>
                         </div>
 
-                        {order.items.map((item: any, idx: number) => (
+                        {/* Danh sách sản phẩm trong đơn */}
+                        {order.items.map((item: OrderItem, idx: number) => (
                             <div key={idx} className="order-items">
                                 <img src={item.images} alt={item.name} />
                                 <div className="product-info">
                                     <p><strong>{item.name}</strong></p>
                                     <p>Giá: {formatCurrency(item.price)} x {item.number}</p>
-                                    <p>Bộ nhớ: {item.capicity}GB</p>
+                                    <p>Bộ nhớ: {item.capicity ? `${item.capicity} GB` : "Không rõ"}</p>
                                 </div>
                             </div>
                         ))}
 
                         <div className="order-total">
-                            <p>
-                                <span>Tổng sản phẩm:</span>
-                                <span>{formatCurrency(order.total)}</span>
-                            </p>
-                            <p>
-                                <span>Phí giao hàng:</span>
-                                <span>{formatCurrency(order.shipFee)}</span>
-                            </p>
+                            <p><span>Tổng sản phẩm:</span> <span>{formatCurrency(order.total)}</span></p>
+                            <p><span>Phí giao hàng:</span> <span>{formatCurrency(order.shipFee)}</span></p>
                             <p className="total">
-                                <span>Tổng cộng:</span>
-                                <span>{formatCurrency(order.total + order.shipFee)}</span>
+                                <span>Tổng cộng:</span> <span>{formatCurrency(order.total + order.shipFee)}</span>
                             </p>
                         </div>
 
                         <div className="order-status">
                             <div className="order-status-indicator">
-                                <div
-                                    className={`order-status-dot ${
-                                        order.paymentMethod === "vnpay" ? "status-ok" : "status-pending"
-                                    }`}
-                                ></div>
+                                <div className={`order-status-dot ${
+                                    order.status === "APPROVE" || order.paymentMethod === "vnpay"
+                                        ? "status-ok"
+                                        : "status-pending"
+                                }`}></div>
                                 <p>
-                                    {order.paymentMethod === "vnpay"
-                                        ? "Đã thanh toán"
-                                        : "Thanh toán khi nhận hàng"}
+                                    {
+                                        order.status === "APPROVE"
+                                            ? "Đã phê duyệt"
+                                            : order.paymentMethod === "vnpay"
+                                                ? "Đã thanh toán"
+                                                : "Thanh toán khi nhận hàng"
+                                    }
                                 </p>
                             </div>
-                            {/*<button className="order-track-btn">Theo dõi đơn hàng</button>*/}
                         </div>
                     </div>
                 ))

@@ -2681,14 +2681,14 @@ label[for="bestseller"] {
 @media (min-width: 768px) {
   .list-admin {
     display: grid;
-    grid-template-columns: 1fr 2fr 3fr 1fr 1.5fr 1.5fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 2fr 2fr 1.5fr 1.5fr 1fr 1fr 1fr;
     align-items: center;
   }
 }
 
 .list-admin-div {
   display: grid;
-  grid-template-columns: 1fr 2fr 3fr 1fr 1.5fr 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr 2fr 1.5fr 1.5fr 1fr 1fr 1fr;
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem;
@@ -2850,6 +2850,153 @@ label[for="bestseller"] {
   font-weight: 500;
   cursor: pointer;
 }
+
+
+// order-admin-page
+.orders-container {
+  border-top: 1px solid #e5e7eb;
+  padding: 1rem;
+}
+
+.order-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #fff;
+}
+
+.order-header p,
+.order-total p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.order-header strong {
+  display: inline-block;
+  width: 180px;
+  color: #111827;
+}
+
+.order-items {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.order-items img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.product-info p {
+  margin: 0.25rem 0;
+}
+
+.order-total {
+  border-top: 1px dashed #ddd;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.order-total .total {
+  color: #dc2626;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.order-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.order-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-ok {
+  background-color: green;
+}
+.status-pending {
+  background-color: orange;
+}
+.order-track-btn {
+  border: 1px solid black;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+.total {
+  color: red;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+
+// revenue-page
+.revenue-container {
+  padding: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.revenue-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+}
+
+.revenue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.revenue-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.revenue-card h3 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.revenue-card p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.revenue-chart-section {
+  margin-top: 10px;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.revenue-chart-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
 
 
 

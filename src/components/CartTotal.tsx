@@ -20,17 +20,17 @@ const CartTotal = ({ cartData }) => {
             <div style={{display: "flex", flexDirection: "column", gap: "0.5rem", marginTop: "0.5rem", fontSize: "0.875rem"}}>
                 <div style={{display: "flex", justifyContent: "space-between"}}>
                     <p>Giá</p>
-                    <p>{getCartAmount()} {currency}</p>
+                    <p>{getCartAmount().toLocaleString()} {currency}</p>
                 </div>
                 <hr />
                 <div style={{display: "flex", justifyContent: "space-between"}}>
                     <p>Phí vận chuyển</p>
-                    <p>{delivery_fee} {currency}</p>
+                    <p>{delivery_fee.toLocaleString()} {currency}</p>
                 </div>
                 <hr />
                 <div style={{display: "flex", justifyContent: "space-between"}}>
                     <p>Tổng cộng</p>
-                    <p>{getCartAmount() === 0 ? '0' : getCartAmount() + delivery_fee} {currency}</p>
+                    <p>{getCartAmount() === 0 ? '0' : (getCartAmount() + delivery_fee).toLocaleString()} {currency}</p>
                 </div>
             </div>
         </div>
